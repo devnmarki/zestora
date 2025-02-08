@@ -2,12 +2,13 @@ import { Response, Request, RequestHandler } from "express"
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { COOKIE_TOKEN_NAME, generateToken } from "../utils/generateToken.js";
+import validator from "validator";
 
 const ERROR_MESSAGES = {
-    email_error: "Email address is required",
-    name_error: "Your name is required",
-    password_error: "Password is required",
-    login_error: "Invalid email or password"
+    email_error: "Email address is required.",
+    name_error: "Your name is required.",
+    password_error: "Password is required.",
+    login_error: "Invalid email or password."
 }
 
 export const register = async (req: Request, res: Response): Promise<any> => {
@@ -24,7 +25,15 @@ export const register = async (req: Request, res: Response): Promise<any> => {
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(400).json({ success: false, error: "User already exists" });
+            return res.status(400).json({ success: false, error: "User already exists." });
+        }
+
+        if (password.length < 8) {
+            return res.status(400).json({ success: false, error: "Password must contains 8 letters" });
+        }
+
+        if (!validator.isEmail(email)) {
+            return res.status(400).json({ success: false, error: "Invalid email" });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -47,6 +56,10 @@ export const register = async (req: Request, res: Response): Promise<any> => {
 
 export const login = async (req: Request, res: Response): Promise<any> => {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+        return res.status(400).json({ success: false, error: "Both email and password are required." });
+    }
     
     try {
         const user = await User.findOne({ email });
@@ -70,5 +83,10 @@ export const login = async (req: Request, res: Response): Promise<any> => {
 }
 
 export const logout = async (req: Request, res: Response) => {
-    
+    try {
+        res.clearCookie(COOKIE_TOKEN_NAME);
+        res.status(200).json({ success: true, message: "Logged out successfully" });
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
 }
