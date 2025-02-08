@@ -4,7 +4,11 @@ import { Types } from "mongoose";
 
 export const COOKIE_TOKEN_NAME = "token";
 
-export const generateToken = (res: Response, userId: Types.ObjectId): string => {
+export const generateToken = async (res: Response, userId: Types.ObjectId): Promise<string> => {
+    if (!process.env.JWT_SECRET) {
+        throw new Error("JWT_SECRET is not defined in environment variables");
+    }
+    
     const token: string = jwt.sign({ userId }, process.env.JWT_SECRET, {
         expiresIn: "7d"
     });
