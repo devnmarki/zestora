@@ -1,9 +1,10 @@
-import { Navbar } from "..";
+import { Hero, Navbar } from "..";
 
 const Home = () => {
     return (
         <>
             <Navbar />
+            <Hero />
         </>
     )
 }

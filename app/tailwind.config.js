@@ -10,7 +10,8 @@ export default {
         offwhite: "#E6EBF2",
         gray: {
           100: "#DCE4EE",
-          200: "#BBC4D1"
+          200: "#BBC4D1",
+          300: "#768599",
         },
         red: "#F33B3B",
         blue: "#3270F5",
