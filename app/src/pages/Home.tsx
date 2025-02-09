@@ -1,10 +1,18 @@
-import { Hero, Navbar } from "..";
+import { useState } from "react";
+import { Fade, Hero, Menu, Modal, Navbar } from "..";
 
 const Home = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    
     return (
         <>
-            <Navbar />
+            <Navbar onMenuButtonClick={() => setMenuOpen(true)} />
             <Hero />
+
+            <Modal open={menuOpen}>
+                <Fade />
+                <Menu onClose={() => setMenuOpen(false)} />
+            </Modal>
         </>
     )
 }
