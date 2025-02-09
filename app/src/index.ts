@@ -6,6 +6,8 @@ export { default as Modal } from "./components/Modal";
 
 export { default as Base } from "./components/Base";
 
+export { default as Flex } from "./components/layout/Flex";
+
 export { default as Button } from "./components/form/Button";
 
 export { default as Navbar } from "./components/home/navbar/Navbar";
