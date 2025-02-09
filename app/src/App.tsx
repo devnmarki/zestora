@@ -1,10 +1,15 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Home, Login, Signup } from ".";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <h1>Welcome Page</h1>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   )
 }
 
