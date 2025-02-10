@@ -1,5 +1,6 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import HeroImage from "/images/hero.svg";
+import { PrimaryButton } from "../..";
 
 const Hero = () => {
     const navigate: NavigateFunction = useNavigate();
@@ -12,7 +13,7 @@ const Hero = () => {
                 <h1 className="text-[48px] font-bold leading-tight">Buy, Sell, and Thrive – All in One Place.</h1>
                 <p className="font-light leading-normal text-gray-300">Zestora connects creators, sellers, and buyers in a seamless marketplace.</p>
                 <div className="flex gap-x-[10px]">
-                    <button onClick={() => navigate("/login")} className="w-[150px] h-[50px] bg-blue text-offwhite rounded-[10px] transition-opacity duration-100 hover:opacity-75">Explore Products</button>
+                    <PrimaryButton width="150px" height="50px" url="/login" >Explore Products</PrimaryButton>
                     <button onClick={() => navigate("/signup")} className="w-[150px] h-[50px] border-[2px] border-blue text-blue rounded-[10px] transition-colors duration-100 hover:bg-blue hover:border-none hover:text-offwhite">Start Selling</button>
                 </div>
             </div>

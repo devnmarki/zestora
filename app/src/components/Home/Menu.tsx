@@ -1,5 +1,5 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
-import { NavbarLinks } from "../..";
+import { NavbarLinks, PrimaryButton } from "../..";
 import { Axis } from "../../enums";
 import CloseMenuIcon from "/icons/close_menu_btn.svg";
 
@@ -18,7 +18,8 @@ const Menu = ({ onClose }: MenuProps) => {
             </div>
             <div className="flex gap-x-[10px]">
                 <button className="w-[135px] h-50 border-[2px] border-blue rounded-[10px] text-blue hover:border-none hover:text-offwhite hover:bg-blue transition-colors duration-100 active:opacity-75" onClick={() => navigate("/login")}>Log In</button>
-                <button className="w-[135px] h-50 bg-blue rounded-[10px] hover:opacity-75 text-offwhite transition-opacity duration-100 active:opacity-50" onClick={() => navigate("/signup")}>Sign Up</button>
+                <PrimaryButton width="135px" height="50px" url="/signup">Sign Up</PrimaryButton>
+                {/* <button className="w-[135px] h-50 bg-blue rounded-[10px] hover:opacity-75 text-offwhite transition-opacity duration-100 active:opacity-50" onClick={() => navigate("/signup")}>Sign Up</button> */}
             </div>
         </div>
     )
