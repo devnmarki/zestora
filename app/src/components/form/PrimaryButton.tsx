@@ -15,6 +15,7 @@ const PrimaryButton = ({
     onClick, 
     width = "100px", 
     height = "50px", 
+    className,
     ...rest 
 }: PrimaryButtonProps) => {
     const navigate: NavigateFunction = useNavigate();
@@ -22,7 +23,7 @@ const PrimaryButton = ({
     return (
         <Base 
             as="button"
-            className="transition-all duration-100"
+            className={`transition-all duration-100 ${className || ""}`}
 
             onClick={() => url !== "" ? navigate(url) : onClick}
             

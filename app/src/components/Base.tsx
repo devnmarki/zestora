@@ -51,6 +51,9 @@ export type BaseProps = {
     backgroundColor?: ResponsiveProp<string>;
     rounded?: ResponsiveProp<string>;
     color?: ResponsiveProp<string>;
+    borderSize?: ResponsiveProp<string>;
+    borderColor?: ResponsiveProp<string>;
+    opacity?: ResponsiveProp<number>;
 
     hover?: ResponsiveCSSProperties;
     active?: ResponsiveCSSProperties;
@@ -65,24 +68,33 @@ const Base: React.FC<BaseProps> = ({
     backgroundColor,
     rounded,
     color,
+    borderSize,
+    borderColor,
+    opacity,
     
     hover,
     active,
     ...rest
 }) => {
     const screenSize = useScreenSize();
+
     const [isHovered, setIsHovered] = useState(false);
     const [isActive, setIsActive] = useState(false);
+
     const baseStyles: React.CSSProperties = {
         width: resolveResponsiveValue(width, screenSize) as React.CSSProperties["width"],
         height: resolveResponsiveValue(height, screenSize) as React.CSSProperties["height"],
         backgroundColor: resolveResponsiveValue(backgroundColor, screenSize) as React.CSSProperties["backgroundColor"],
         borderRadius: resolveResponsiveValue(rounded, screenSize) as React.CSSProperties["borderRadius"],
         color: resolveResponsiveValue(color, screenSize) as React.CSSProperties["color"],
+        border: `${resolveResponsiveValue(borderSize, screenSize) as React.CSSProperties["border"]} solid ${resolveResponsiveValue(borderColor, screenSize) as React.CSSProperties["border"]}`,
+        opacity: resolveResponsiveValue(opacity, screenSize) as React.CSSProperties["opacity"],
         ...style,
     };
+
     const hoverStyles = resolveResponsiveStyles(hover, screenSize);
     const activeStyles = resolveResponsiveStyles(active, screenSize);
+
     // Merge base, hover, and active styles.
     let finalStyle = { ...baseStyles };
     if (isHovered) {
@@ -91,6 +103,7 @@ const Base: React.FC<BaseProps> = ({
     if (isActive) {
         finalStyle = { ...finalStyle, ...activeStyles };
     }
+    
     return (
         <Component
         style={finalStyle}

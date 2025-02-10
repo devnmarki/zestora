@@ -1,10 +1,7 @@
-import { NavigateFunction, useNavigate } from "react-router-dom";
 import HeroImage from "/images/hero.svg";
-import { PrimaryButton } from "../..";
+import { PrimaryButton, SecondaryButton } from "../..";
 
 const Hero = () => {
-    const navigate: NavigateFunction = useNavigate();
-
     return (
         <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-y-[40px] md:gap-x-[50px] lg:gap-x-[132px] w-full px-[20px] mt-[40px] md:mt-[100px]">
             <img src={HeroImage} alt="Hero" className="w-[333px] xl:w-[524px]" />
@@ -13,8 +10,8 @@ const Hero = () => {
                 <h1 className="text-[48px] font-bold leading-tight">Buy, Sell, and Thrive – All in One Place.</h1>
                 <p className="font-light leading-normal text-gray-300">Zestora connects creators, sellers, and buyers in a seamless marketplace.</p>
                 <div className="flex gap-x-[10px]">
-                    <PrimaryButton width="150px" height="50px" url="/login" >Explore Products</PrimaryButton>
-                    <button onClick={() => navigate("/signup")} className="w-[150px] h-[50px] border-[2px] border-blue text-blue rounded-[10px] transition-colors duration-100 hover:bg-blue hover:border-none hover:text-offwhite">Start Selling</button>
+                    <PrimaryButton width="150px" url="/login" >Explore Products</PrimaryButton>
+                    <SecondaryButton width="150px" url="/signup">Start Selling</SecondaryButton>
                 </div>
             </div>
         </div>
