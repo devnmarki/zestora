@@ -12,6 +12,13 @@ export enum DisplayTypes {
     Grid = "grid"
 }
 
+export enum PositionTypes {
+    Absolute = "absolute",
+    Fixed = "fixed",
+    Relative = "relative",
+    Sticky = "sticky"
+}
+
 export enum Alignment {
     Start = "start",
     End = "end",

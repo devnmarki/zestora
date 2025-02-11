@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useScreenSize from "../hooks/useScreenSize";
-import { Alignment, Axis } from "../enums";
+import { Alignment, Axis, PositionTypes } from "../enums";
 
 export type Breakpoints = "base" | "sm" | "md" | "lg" | "xl" | "xxl";
 
@@ -42,6 +42,9 @@ export const resolveResponsiveStyles = (
     }
     return resolved;
 };
+
+type TextAlign = "start" | "center" | "end";
+
 export type BaseProps = {
     as?: React.ElementType; // What element to render (button, div, etc.)
     children?: React.ReactNode;
@@ -53,6 +56,13 @@ export type BaseProps = {
     alignItems?: ResponsiveProp<Alignment>;
     columnGap?: ResponsiveProp<string>;
     rowGap?: ResponsiveProp<string>;
+
+    position?: ResponsiveProp<PositionTypes>;
+    top?: ResponsiveProp<string>;
+    left?: ResponsiveProp<string>;
+    right?: ResponsiveProp<string>;
+    bottom?: ResponsiveProp<string>;
+
     width?: ResponsiveProp<string>;
     height?: ResponsiveProp<string>;
     padding?: ResponsiveProp<string>;
@@ -62,6 +72,7 @@ export type BaseProps = {
     color?: ResponsiveProp<string>;
     borderSize?: ResponsiveProp<string>;
     borderColor?: ResponsiveProp<string>;
+    textAlign?: ResponsiveProp<TextAlign>;
     opacity?: ResponsiveProp<number>;
 
     hover?: ResponsiveCSSProperties;
@@ -78,6 +89,13 @@ const Base: React.FC<BaseProps> = ({
     alignItems,
     columnGap,
     rowGap,
+
+    position,
+    top,
+    left,
+    right,
+    bottom,
+
     width,
     height,
     padding,
@@ -87,6 +105,7 @@ const Base: React.FC<BaseProps> = ({
     color,
     borderSize,
     borderColor,
+    textAlign,    
     opacity,
     
     hover,
@@ -105,6 +124,11 @@ const Base: React.FC<BaseProps> = ({
         alignItems: resolveResponsiveValue(alignItems, screenSize) as React.CSSProperties["alignItems"],
         rowGap: resolveResponsiveValue(rowGap, screenSize) as React.CSSProperties["rowGap"],
         columnGap: resolveResponsiveValue(columnGap, screenSize) as React.CSSProperties["columnGap"],
+        position: resolveResponsiveValue(position, screenSize) as React.CSSProperties["position"],
+        top: resolveResponsiveValue(top, screenSize) as React.CSSProperties["top"],
+        left: resolveResponsiveValue(left, screenSize) as React.CSSProperties["left"],
+        right: resolveResponsiveValue(right, screenSize) as React.CSSProperties["right"],
+        bottom: resolveResponsiveValue(bottom, screenSize) as React.CSSProperties["bottom"],
         width: resolveResponsiveValue(width, screenSize) as React.CSSProperties["width"],
         height: resolveResponsiveValue(height, screenSize) as React.CSSProperties["height"],
         padding: resolveResponsiveValue(padding, screenSize) as React.CSSProperties["padding"],
@@ -113,6 +137,7 @@ const Base: React.FC<BaseProps> = ({
         borderRadius: resolveResponsiveValue(rounded, screenSize) as React.CSSProperties["borderRadius"],
         color: resolveResponsiveValue(color, screenSize) as React.CSSProperties["color"],
         border: `${resolveResponsiveValue(borderSize, screenSize) as React.CSSProperties["border"]} solid ${resolveResponsiveValue(borderColor, screenSize) as React.CSSProperties["border"]}`,
+        textAlign: resolveResponsiveValue(textAlign, screenSize) as React.CSSProperties["textAlign"],
         opacity: resolveResponsiveValue(opacity, screenSize) as React.CSSProperties["opacity"],
         ...style,
     };

@@ -12,6 +12,7 @@ export { default as Modal } from "./components/Modal";
 
 // Layout
 export { default as Flex } from "./components/layout/Flex";
+export { default as Center } from "./components/layout/Center";
 
 // Form
 export { default as PrimaryButton } from "./components/form/PrimaryButton";
