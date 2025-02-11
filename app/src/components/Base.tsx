@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useScreenSize from "../hooks/useScreenSize";
+import { Alignment, Axis } from "../enums";
 
 export type Breakpoints = "base" | "sm" | "md" | "lg" | "xl" | "xxl";
 
@@ -45,9 +46,17 @@ export type BaseProps = {
     as?: React.ElementType; // What element to render (button, div, etc.)
     children?: React.ReactNode;
     style?: React.CSSProperties;
-
+    
+    display?: ResponsiveProp<string>;
+    flexDirection?: ResponsiveProp<Axis>;
+    justifyContent?: ResponsiveProp<Alignment>;
+    alignItems?: ResponsiveProp<Alignment>;
+    columnGap?: ResponsiveProp<string>;
+    rowGap?: ResponsiveProp<string>;
     width?: ResponsiveProp<string>;
     height?: ResponsiveProp<string>;
+    padding?: ResponsiveProp<string>;
+    margin?: ResponsiveProp<string>;
     backgroundColor?: ResponsiveProp<string>;
     rounded?: ResponsiveProp<string>;
     color?: ResponsiveProp<string>;
@@ -63,8 +72,16 @@ const Base: React.FC<BaseProps> = ({
     children,
     style = {},
     
+    display,
+    flexDirection,
+    justifyContent,
+    alignItems,
+    columnGap,
+    rowGap,
     width,
     height,
+    padding,
+    margin,
     backgroundColor,
     rounded,
     color,
@@ -82,8 +99,16 @@ const Base: React.FC<BaseProps> = ({
     const [isActive, setIsActive] = useState(false);
 
     const baseStyles: React.CSSProperties = {
+        display: resolveResponsiveValue(display, screenSize) as React.CSSProperties["display"],
+        flexDirection: resolveResponsiveValue(flexDirection, screenSize) as React.CSSProperties["flexDirection"],
+        justifyContent: resolveResponsiveValue(justifyContent, screenSize) as React.CSSProperties["justifyContent"],
+        alignItems: resolveResponsiveValue(alignItems, screenSize) as React.CSSProperties["alignItems"],
+        rowGap: resolveResponsiveValue(rowGap, screenSize) as React.CSSProperties["rowGap"],
+        columnGap: resolveResponsiveValue(columnGap, screenSize) as React.CSSProperties["columnGap"],
         width: resolveResponsiveValue(width, screenSize) as React.CSSProperties["width"],
         height: resolveResponsiveValue(height, screenSize) as React.CSSProperties["height"],
+        padding: resolveResponsiveValue(padding, screenSize) as React.CSSProperties["padding"],
+        margin: resolveResponsiveValue(margin, screenSize) as React.CSSProperties["margin"],
         backgroundColor: resolveResponsiveValue(backgroundColor, screenSize) as React.CSSProperties["backgroundColor"],
         borderRadius: resolveResponsiveValue(rounded, screenSize) as React.CSSProperties["borderRadius"],
         color: resolveResponsiveValue(color, screenSize) as React.CSSProperties["color"],
@@ -103,7 +128,7 @@ const Base: React.FC<BaseProps> = ({
     if (isActive) {
         finalStyle = { ...finalStyle, ...activeStyles };
     }
-    
+
     return (
         <Component
         style={finalStyle}
