@@ -1,9 +1,19 @@
 import HeroImage from "/images/hero.svg";
-import { PrimaryButton, SecondaryButton } from "../..";
+import { Flex, PrimaryButton, SecondaryButton } from "../..";
+import { Alignment, Axis } from "../../enums";
 
 const Hero = () => {
     return (
-        <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-y-[40px] md:gap-x-[50px] lg:gap-x-[132px] w-full px-[20px] mt-[40px] md:mt-[100px]">
+        <Flex 
+            flexDirection={{ base: Axis.Vertical, md: Axis.HorizontalReverse }}
+            justify={Alignment.Center}
+            items={Alignment.Center}
+            columnGap={{ md: "50px", lg: "132px" }}
+            gapY="40px"
+            width="100%"
+            padding="20px"
+            margin={{ base: "40px 0px 0px 0px", md: "100px 0px 0px 0px" }}
+        >
             <img src={HeroImage} alt="Hero" className="w-[333px] xl:w-[524px]" />
 
             <div className="flex justify-center items-center md:items-start flex-col gap-y-[10px] w-[335px] text-center md:text-left">
@@ -14,7 +24,7 @@ const Hero = () => {
                     <SecondaryButton width="150px" url="/signup">Start Selling</SecondaryButton>
                 </div>
             </div>
-        </div>
+        </Flex>
     )
 }
 

@@ -1,6 +1,8 @@
 export enum Axis {
     Horizontal = "row",
-    Vertical = "column"
+    Vertical = "column",
+    HorizontalReverse = "row-reverse",
+    VerticalReverse = "column-reverse"
 }
 
 export enum DisplayTypes {
