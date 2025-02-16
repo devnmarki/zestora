@@ -25,7 +25,7 @@ const PrimaryButton = ({
             as="button"
             className={`transition-all duration-100 ${className || ""}`}
 
-            onClick={() => url !== "" ? navigate(url) : onClick}
+            onClick={() => url === "" ? onClick : navigate(url)} // fix this pls
             
             width={width}
             height={height}

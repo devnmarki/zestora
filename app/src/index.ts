@@ -17,6 +17,7 @@ export { default as Center } from "./components/layout/Center";
 // Form
 export { default as PrimaryButton } from "./components/form/PrimaryButton";
 export { default as SecondaryButton } from "./components/form/SecondaryButton";
+export { default as Input } from "./components/form/Input";
 
 // Home Page
 export { default as Navbar } from "./components/home/navbar/Navbar";

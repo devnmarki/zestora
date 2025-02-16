@@ -49,6 +49,7 @@ export type BaseProps = {
     as?: React.ElementType; // What element to render (button, div, etc.)
     children?: React.ReactNode;
     style?: React.CSSProperties;
+    placeholder?: string;
     
     display?: ResponsiveProp<string>;
     flexDirection?: ResponsiveProp<Axis>;
@@ -82,6 +83,7 @@ const Base: React.FC<BaseProps> = ({
     as: Component = "div",
     children,
     style = {},
+    placeholder,
     
     display,
     flexDirection,
@@ -156,25 +158,26 @@ const Base: React.FC<BaseProps> = ({
 
     return (
         <Component
-        style={finalStyle}
-        onMouseEnter={(e: any) => {
-            setIsHovered(true);
-            rest.onMouseEnter && rest.onMouseEnter(e);
-        }}
-        onMouseLeave={(e: any) => {
-            setIsHovered(false);
-            setIsActive(false);
-            rest.onMouseLeave && rest.onMouseLeave(e);
-        }}
-        onMouseDown={(e: any) => {
-            setIsActive(true);
-            rest.onMouseDown && rest.onMouseDown(e);
-        }}
-        onMouseUp={(e: any) => {
-            setIsActive(false);
-            rest.onMouseUp && rest.onMouseUp(e);
-        }}
-        {...rest}
+            style={finalStyle}
+            onMouseEnter={(e: any) => {
+                setIsHovered(true);
+                rest.onMouseEnter && rest.onMouseEnter(e);
+            }}
+            onMouseLeave={(e: any) => {
+                setIsHovered(false);
+                setIsActive(false);
+                rest.onMouseLeave && rest.onMouseLeave(e);
+            }}
+            onMouseDown={(e: any) => {
+                setIsActive(true);
+                rest.onMouseDown && rest.onMouseDown(e);
+            }}
+            onMouseUp={(e: any) => {
+                setIsActive(false);
+                rest.onMouseUp && rest.onMouseUp(e);
+            }}
+            placeholder={placeholder}
+            {...rest}
         >
         {children}
         </Component>
